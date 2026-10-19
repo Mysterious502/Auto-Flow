@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Flow</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="icons/icon48.png" alt="Auto Flow" class="logo-img">
+        <h1>Auto Flow</h1>
+      </div>
+      <p class="subtitle">Auto-send prompts when AI limits reset</p>
+    </header>
+
+    <!-- Status Bar -->
+    <div class="status-bar" id="statusBar">
+      <span class="status-dot"></span>
+      <span class="status-text">Ready</span>
+      <span class="task-count" id="taskCount">0 tasks</span>
+    </div>
+
+    <!-- Tab Selector -->
+    <div class="section">
+      <label class="section-label">
+        <span class="label-icon">🌐</span>
+        Step 1: Select Browser Tab
+      </label>
+      <div class="tab-selector">
+        <select id="tabSelect" class="select-input">
+          <option value="">-- Click Refresh & Select Tab --</option>
+        </select>
+        <button id="refreshTabs" class="btn-icon" title="Refresh Tabs">
+          🔄
+        </button>
+      </div>
+      <div class="detected-ai" id="detectedAI"></div>
+    </div>
+
+    <!-- Prompt Input -->
+    <div class="section">
+      <label class="section-label">
+        <span class="label-icon">💬</span>
+        Step 2: Write Your Prompt
+      </label>
+      <textarea 
+        id="promptInput" 
+        class="textarea-input" 
+        placeholder="Write your prompt here...&#10;&#10;Example: Continue building the project from where we left off. Implement the next feature..."
+        rows="4"
+      ></textarea>
+    </div>
+
+    <!-- Time Setter -->
+    <div class="section">
+      <label class="section-label">
+        <span class="label-icon">⏰</span>
+        Step 3: Set Time to Send
+      </label>
+      <div class="time-options">
+        <div class="time-preset-group">
+          <button class="time-preset" data-minutes="5">5 min</button>
+          <button class="time-preset" data-minutes="15">15 min</button>
+          <button class="time-preset" data-minutes="30">30 min</button>
+          <button class="time-preset" data-minutes="60">1 hr</button>
+          <button class="time-preset" data-minutes="120">2 hr</button>
+          <button class="time-preset" data-minutes="180">3 hr</button>
+        </div>
+        <div class="custom-time">
+          <label class="small-label">Or set custom time:</label>
+          <div class="custom-time-inputs">
+            <div class="time-input-group">
+              <input type="number" id="customHours" class="time-input" min="0" max="24" value="0">
+              <span class="time-unit">hrs</span>
+            </div>
+            <div class="time-input-group">
+              <input type="number" id="customMinutes" class="time-input" min="0" max="59" value="0">
+              <span class="time-unit">min</span>
+            </div>
+          </div>
+        </div>
+        <div class="exact-time">
+          <label class="small-label">Or set exact time:</label>
+          <input type="datetime-local" id="exactTime" class="datetime-input">
+        </div>
+      </div>
+      <div class="selected-time" id="selectedTime">
+        No time selected
+      </div>
+    </div>
+
+    <!-- Add Task Button -->
+    <button id="addTask" class="btn-primary">
+      <span>➕</span> Add Scheduled Task
+    </button>
+
+    <!-- Scheduled Tasks List -->
+    <div class="section">
+      <div class="section-header">
+        <label class="section-label">
+          <span class="label-icon">📋</span>
+          Scheduled Tasks
+        </label>
+        <button id="clearAll" class="btn-danger-small">Clear All</button>
+      </div>
+      <div id="taskList" class="task-list">
+        <div class="empty-state">
+          <span>📭</span>
+          <p>No scheduled tasks yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>💡 Keep browser open for tasks to execute</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
